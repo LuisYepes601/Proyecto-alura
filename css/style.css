@@ -90,7 +90,7 @@ main {
     background-color: var(--color-6);
     max-width: 500px;
     height: auto;
-    margin: 0 2rem 2rem 1rem;
+    margin: 0 1rem 1rem 2rem;
 }
 
 .mensaje_no_texto {

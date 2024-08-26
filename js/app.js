@@ -9,6 +9,11 @@ La letra "a" es convertida para "ai"
 La letra "o" es convertida para "ober"
 La letra "u" es convertida para "ufat"*/
 
+function esValido(texto) {
+    const regex = /^[a-z\s]*$/;  // Solo permite letras minúsculas y espacios
+    return regex.test(texto);
+}
+
 function encriptar(strtrigEncriptar) {
     let llaves_encriptacion = [["e", "enter"], ["i", "imes"], ["a", "ai"], ["o", "ober"], ["u", "ufat"]]
     strtrigEncriptar = strtrigEncriptar.toLowerCase();
@@ -23,6 +28,12 @@ function encriptar(strtrigEncriptar) {
 function btn_encriptar() {
     let alerta = document.querySelector("#alerta_encriptador");
     let imagen = document.querySelector("#logo");
+    const texto = textArea.value;
+
+    if (!esValido(texto)) {
+        alerta.textContent = "¡Por favor, ingrese solo letras minúsculas sin acentos!";
+        return;
+    }
     const textoEncriptado = encriptar(textArea.value);
     mensaje_encriptado.value = textoEncriptado;
     textArea.value = "";
@@ -64,4 +75,16 @@ function btn_limpiar() {
     alerta.textContent = "Ningún mensaje fue encontrado";
 
 }
+
+    async function copiarTexto() {
+        const textarea = document.querySelector(".texto_encriptar").value;
+        try {
+            await navigator.clipboard.writeText(textarea);
+            alert("Texto copiado al portapapeles");
+        } catch (err) {
+            console.error("Error al copiar el texto: ", err);
+        }
+    }
+
+
 
